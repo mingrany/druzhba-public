@@ -2,7 +2,6 @@ extern crate rand;
 
 use crate::phv::Phv;
 use crate::alu::ALU;
-use crate::phv_container::PhvContainer;
 
 pub struct PipelineStage {
    pub stateless_alus: Vec<ALU>,
@@ -56,10 +55,10 @@ impl PipelineStage {
 
         for alu in self.stateful_alus.iter_mut () {
           if self.salu_configs[alu_count] == 1 {
-              let mut t_input_state = input_phv.get_state().clone();
+              let t_input_state = input_phv.get_state().clone();
               input_phv.set_state(t_input_state);
 
-              let mut t_initial_state = initial_phv.get_state();
+              let t_initial_state = initial_phv.get_state();
               initial_phv.set_state(t_initial_state);
 
             alu.set_state_variables 
